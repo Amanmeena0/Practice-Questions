@@ -14,19 +14,20 @@ struct TreeNode
 class Solution
 {
 public:
+    bool isSameTree(TreeNode *p, TreeNode *q)
+    {
+        if (!p && !q)
+            return true;
+        if (!p || !q)
+            return false;
+        return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
     bool isSubtree(TreeNode *root, TreeNode *subRoot)
     {
-        if(root == subRoot) return true;
-
-        while(subRoot){
-            visited.push_back(subRoot->value);
-            root->left;
-            root->right;
-        }
-        for(TreeNode& S : root){
-            if(visited.find(s) != visited.end()){
-                visited[s]--;
-            }
-        }~
+        if (!root)
+            return false;
+        if (isSameTree(root, subRoot))
+            return true;
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 };
