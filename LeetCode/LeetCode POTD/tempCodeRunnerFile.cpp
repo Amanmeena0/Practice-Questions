@@ -1,1 +1,0 @@
-if(!isCoPrime(nums[i-1],nums[i])){
