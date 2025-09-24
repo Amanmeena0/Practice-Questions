@@ -1,38 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int compareVersion(string version1, string version2)
-    {
-        int left = 0;
-        int right = 0;
-        int size1 = version1.size();
-        int size2 = version2.size();
-        while (right < size1 || left < size2)
-        {
-            long v1 = 0, v2 = 0;
-            while (right < size1 && version1[right] != '.')
-            {
-                v1 = v1 * 10 + (version1[right] - '0');
-                right++;
-            }
-            while (left < size2 && version2[left] != '.')
-            {
-                v2 = v2 * 10 + (version2[left] - '0');
-                left++;
-            }
+    int compareVersion(string version1, string version2) {
+        vector<int> v1 = split(version1);
+        vector<int> v2 = split(version2);
 
-            if (v1 < v2)
-                return -1;
-            if (v2 < v1)
-                return 1;
-
-            right = right + 1;
-            left = left + 1;
+        int n = max(v1.size(), v2.size());
+        for (int i = 0; i < n; i++) {
+            int num1 = (i < v1.size()) ? v1[i] : 0;
+            int num2 = (i < v2.size()) ? v2[i] : 0;
+            if (num1 < num2) return -1;
+            if (num1 > num2) return 1;
         }
-        return 1;
+        return 0;
+    }
+
+private:
+    vector<int> split(string &s) {
+        vector<int> res;
+        stringstream ss(s);
+        string temp;
+        while (getline(ss, temp, '.')) {
+            res.push_back(stoi(temp));
+        }
+        return res;
     }
 };
 
