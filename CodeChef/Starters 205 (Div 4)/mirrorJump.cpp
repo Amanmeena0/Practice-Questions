@@ -7,7 +7,7 @@ int main()
     while (t--)
     {
         // code here
-        
-    }
+
+    }           
     return 0;
 }
