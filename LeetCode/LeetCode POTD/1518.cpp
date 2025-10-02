@@ -4,15 +4,14 @@ using namespace std;
 class Solution {
 public:
     int numWaterBottles(int numBottles, int numExchange) {
-        int drunk = numBottles;       // initially drink all
-        int empty = numBottles;       // those bottles are now empty
+        int drunk = numBottles;       
+        int empty = numBottles;       
         
         while (empty >= numExchange) {
-            int newBottles = empty / numExchange;   // how many full we can get
-            drunk += newBottles;                   // drink them
-            empty = empty % numExchange + newBottles; // remaining empty + newly drunk
+            int newBottles = empty / numExchange;   
+            drunk += newBottles;                   
+            empty = empty % numExchange + newBottles; 
         }
-        
         return drunk;
     }
 };
@@ -20,7 +19,10 @@ public:
 
 int main() {
    Solution sol;
-   int result = sol;
+   int bottles = 15;
+   int exchange  = 4;
+
+   int result = sol.numWaterBottles(bottles,exchange);
    cout<< result << endl;
    return 0;
 }
