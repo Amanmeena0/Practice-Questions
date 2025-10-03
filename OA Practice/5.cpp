@@ -8,7 +8,7 @@ int differnce(int n , int m ){
         if(i % n == 0) div4 += i;
         else notDiv4 += i;
     }
-    return notDiv4 - div4;
+    return (notDiv4 > div4) ? notDiv4 - div4 : div4 - notDiv4;
 }
 
 
