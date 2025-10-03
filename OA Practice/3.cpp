@@ -6,45 +6,30 @@ int CheckPassword(char str[], int n)
 
     if (n < 4)
         return 0;
-    int i = 1;
-    int charCount = 0;
-    int capCount = 0;
-    while (n > i)
+    if (str[0] >= '0' && str[0] <= '9')
+        return 0;
+
+    int a = 0;
+    int cap = 0;
+    int nu = 0;
+    
+    while (a < n)
     {
-        if (str[0] >= '0' && str[0] <= '9')
+        if (str[a] == ' ' || str[a] == '/')
         {
             return 0;
         }
-        else
+        if (str[a] >= 65 && str[a] <= 90)
         {
-            if (str[i] >= 'a' && str[i] <= 'z')
-            {
-                charCount++;
-                continue;
-            }
-            else if (str[i] >= 'A' && str[i] <= 'Z')
-            {
-                charCount++;
-                capCount++;
-                continue;
-            }
-            else if (str[i] >= '0' && str[i] <= '9')
-            {
-                continue;
-            }
-            else if (str[i] == ' ' || str[i] == '/')
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
+            cap++;
         }
-        i++;
-        if(charCount >= 4 && capCount >= 1) return 0;
+        else if (str[a] >= '0' && str[a] <= '9')
+        {
+            nu++;
+        }
+        a++;
     }
-    return 1;
+    return cap > 0 && nu > 0;
 }
 
 int main()
