@@ -6,21 +6,20 @@ class Solution
 public:
     int maxArea(vector<int> &height)
     {
-        int left = 0, right = height.size() - 1;
+        int left = 0, right = height.size()-1;
         int result = 0;
         while (left < right)
         {
             int width = right - left;
-            int h = min(height[right], height[left]);
-            result = max(result, width * h);
-
-            if (height[left] < height[right])
+            int maxHeight = min(height[left],height[right]));
+            result = max(result, width * maxHeight);
+            if (height[right] < height[left])
             {
-                left++;
+                right--;
             }
             else
             {
-                right--;
+                left++;
             }
         }
         return result;
@@ -30,8 +29,7 @@ public:
 int main()
 {
     Solution sol;
-    vector<int> arr = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-    int result = sol.maxArea(arr);
+    int result = sol;
     cout << result << endl;
     return 0;
 }
