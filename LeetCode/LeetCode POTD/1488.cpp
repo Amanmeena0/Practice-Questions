@@ -7,9 +7,9 @@ public:
     vector<int> avoidFlood(vector<int> &rains)
     {
         int n = rains.size();
-        vector<int> ans(n, 1);
-        unordered_map<int, int> mpp; // lake -> last day it rained
-        set<int> dryDays;            // indices of days available for drying
+        vector<int> ans(n, 1); // Default value for dry days
+        unordered_map<int, int> lastRain; // lake -> last day it rained
+        set<int> dryDays; // indices of dry days
 
         for (int i = 0; i < n; i++)
         {
@@ -17,29 +17,31 @@ public:
 
             if (lake == 0)
             {
-                dryDays.insert(i); // store index of dry day
+                dryDays.insert(i); // potential dry day
             }
             else
             {
-                ans[i] = -1; // raining day
-                
-                if (mpp.count(lake))
+                ans[i] = -1; // raining day → mark as -1
+
+                // If lake already has water and no previous drying
+                if (lastRain.count(lake))
                 {
-                    auto it = dryDays.lower_bound(mpp[lake] + 1);
+                    // Find the first dry day after the last rain of this lake
+                    auto it = dryDays.lower_bound(lastRain[lake] + 1);
+
                     if (it == dryDays.end())
                     {
-                        // flood cannot be avoided
+                        // No available dry day → flood inevitable
                         return {};
                     }
 
-                    ans[*it] = lake;   // dry this lake on that dry day
-                    dryDays.erase(it); // remove that dry day
+                    ans[*it] = lake;     // Dry this lake on that day
+                    dryDays.erase(it);   // Remove used dry day
                 }
 
-                mpp[lake] = i; // update last rain day for this lake
+                lastRain[lake] = i; // Update last rain day for the lake
             }
         }
-
         return ans;
     }
 };
@@ -48,18 +50,15 @@ int main()
 {
     Solution sol;
 
-    // Sample Input: rains array
-    vector<int> rains = {1, 2, 0, 1, 2};
-
+    vector<int> rains = {1, 2, 3,4,5};  // Example input
     vector<int> result = sol.avoidFlood(rains);
 
     if (result.empty())
     {
-        cout << "Flood cannot be avoided." << endl;
+        cout << "Flood inevitable" << endl;
     }
     else
     {
-        cout << "Output: ";
         for (int val : result)
             cout << val << " ";
         cout << endl;
