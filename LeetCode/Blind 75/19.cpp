@@ -18,12 +18,10 @@ public:
 
         if (head == nullptr)
             return head;
-        if (head->next == nullptr)
-            return head;
 
         ListNode *first = head;
         ListNode *second = head;
-        
+
         int count = 0;
 
         while (first != nullptr)
@@ -31,7 +29,13 @@ public:
             first = first->next;
             count++;
         }
-
+        if (n == count)
+        {
+            ListNode *temp = head;
+            head = head->next;
+            delete temp;
+            return head;
+        }
         int oneNodeBeforeN = count - n - 1;
 
         for (int i = 0; i < oneNodeBeforeN; i++)
@@ -41,9 +45,10 @@ public:
 
         ListNode *temp = second->next;
 
-        temp->next = nullptr;
+        
         second->next = temp->next;
         delete temp;
+
         return head;
     }
 };
