@@ -23,6 +23,10 @@ int fibMemo(int n)
 // tabulations
 int fibTabu(int n)
 {
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
     vector<int> dp(n + 1, -1);
     dp[0] = 0;
     dp[1] = 1;
@@ -33,9 +37,13 @@ int fibTabu(int n)
     return dp[n];
 }
 
-//space optimization
+// space optimization
 int fibSpace(int n)
 {
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
     int prev1 = 0;
     int prev2 = 1;
 
