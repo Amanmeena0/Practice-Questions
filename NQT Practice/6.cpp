@@ -8,8 +8,6 @@ int main() {
     while (T--) {
         int v, w;
         cin >> v >> w;
-        
-        // Check for impossible conditions
         if (w < 2 * v || w > 4 * v || w % 2 != 0) {
             cout << -1 << endl;
         } else {
