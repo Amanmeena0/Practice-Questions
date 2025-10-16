@@ -1,30 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main()
-{
+
+int main() {
     int t;
     cin >> t;
-    while (t--)
-    {
-        // code here
+    while (t--) {
         int n;
         cin >> n;
         vector<int> nums(n);
-        for(int i = 0; i < n ;i++){
-            cin>>nums[i];
-        }
-        int count = 0;
-        for (int i = 0; i < n; i++)
-        {
-            int sum = 0;
-            for (int j = i + 1; j < n; j++)
-            {
-                sum = nums[i] +nums[j];
-
-                if(sum % 2 == 0) count++;
+        
+        long long even_count = 0, odd_count = 0;
+        
+        for(int i = 0; i < n; i++) {
+            cin >> nums[i];
+            if(nums[i] % 2 == 0) {
+                even_count++;
+            } else {
+                odd_count++;
             }
         }
-        cout<<count<<endl;
+        
+        long long count = (even_count * (even_count - 1)) / 2 
+                            + (odd_count * (odd_count - 1)) / 2;
+        
+        cout << count << endl;
     }
     return 0;
 }

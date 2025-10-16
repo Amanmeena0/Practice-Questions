@@ -29,12 +29,12 @@ int main()
                 j++;
             }
             prefix = prefix.substr(0, j);
-            
-            if (prefix.empty()) {
-                break; 
-            }
         }
-        cout << prefix << endl;
+        if(!prefix.empty()){
+            cout<<prefix<<endl;
+        }else{
+            cout<<-1<<endl;
+        }
     }
     return 0;
 }

@@ -1,28 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int countOnes(vector<vector<int>> &matrz, int n, int m)
+int findRowWithMaxOnes(vector<vector<int>> &matrix, int n, int m)
 {
-    int row = 0;
-    unordered_map<int, int> mpp;
-    int maxOne = 0;
+    int maxRow = -1;
+    int maxCount = 0;
+    
     for (int i = 0; i < n; i++)
     {
-        int maxONE = 0;
+        int currentCount = 0;
         for (int j = 0; j < m; j++)
         {
-            if (matrz[i][j] == 1)
+            if (matrix[i][j] == 1)
             {
-                maxONE++;
+                currentCount++;
             }
         }
-        if (maxONE > maxOne)
+        
+        // Update only if we found a row with more 1's
+        if (currentCount > maxCount)
         {
-            maxOne = maxONE;
-            row = i;
+            maxCount = currentCount;
+            maxRow = i;
         }
     }
-    return row;
+    return maxRow;
 }
 
 int main()
@@ -31,20 +33,19 @@ int main()
     cin >> t;
     while (t--)
     {
-        // code here
-        int n;
-        cin >> n; int m;
-        cin >> m;
-        vector<vector<int>> matrz(n, vector<int>(m));
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> matrix(n, vector<int>(m));
+        
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
-                cin >> matrz[i][j];
+                cin >> matrix[i][j];
             }
         }
-
-        cout << countOnes(matrz, n, m) << endl;
+        
+        cout << findRowWithMaxOnes(matrix, n, m) << endl;
     }
     return 0;
 }

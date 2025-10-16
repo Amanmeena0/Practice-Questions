@@ -3,15 +3,16 @@ using namespace std;
 
 int fact(int n)
 {
-    int ans = n;
-    for(int i = n - 1; i > 0; i--){
+    if (n == 0 || n == 1)
+        return 1;
+    int ans = 1;
+    for (int i = 2; i <= n; i++)
+    {
         int sum = 0;
-
-        for(int j = 0 ; j< i; j++){
+        for (int j = 0; j < i; j++)
+        {
             sum += ans;
-            cout<<sum<<endl;
         }
-        cout<<"break"<<endl;
         ans = sum;
     }
     return ans;
@@ -25,8 +26,8 @@ int main()
     {
         // code here
         int n;
-        cin>>n;
-        cout<<fact(n)<<endl;
+        cin >> n;
+        cout << fact(n) << endl;
     }
     return 0;
 }

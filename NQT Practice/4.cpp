@@ -19,14 +19,12 @@ int main()
             mpp[c]++;
         }
         int count = 0;
-        for (char c : s2)
+        unordered_set<char> uniqueChars(s2.begin(), s2.end());
+        for (char c : uniqueChars)
         {
-
-            if (mpp.find(c) != mpp.end()){
-                count += mpp[c];
-            }
+            count += mpp[c];
         }
-        cout<<count<<endl;
+        cout << count << endl;
     }
     return 0;
 }
