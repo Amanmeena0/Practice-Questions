@@ -9,7 +9,7 @@ public:
         int j = 0;
 
         for(int i =0; i < n ; i++){
-            if(nums[i] != k){
+            if(nums[i] != val){
                 nums[j] = nums[i];
                 j++;
             }
@@ -20,7 +20,9 @@ public:
 
 int main() {
    Solution sol;
-   int result = sol;
+   vector<int> nums = {3,2,2,3};
+   int val = 3;
+   int result = sol.removeElement(nums,val);
    cout<< result << endl;
    return 0;
 }
