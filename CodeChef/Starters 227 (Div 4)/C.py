@@ -3,20 +3,21 @@ t = int(input())
 for _ in range(t):
     
     N, K = map(int, input().split())
-    prices = input().split()
-    S = input()
-    totalCost = 0
+    prices = list(map(int, input().split()))
+    S = input().strip()
 
-    if K > N:
-        print(-1)
+    available_prices = []
 
-    for i in range(1,N):
+    for i in range(N):
         
-        if S[i] == 0:
-            cost += N[i]
-            K -= 1
-
-    if K == 0:
-        print(cost)
-    else: 
+        if S[i] == '0':
+            available_prices.append(prices[i])
+    
+    if len(available_prices) < K:
         print(-1)
+        continue
+
+    available_prices.sort()
+    total_cost = sum(available_prices[:K])
+
+    print(total_cost)
